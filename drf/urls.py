@@ -19,6 +19,8 @@ from django.urls import path, include
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from django.views.generic import RedirectView
+from eva4.views import custom_logout
 
 # Configuración Swagger
 schema_view = get_schema_view(
@@ -33,14 +35,17 @@ permission_classes=(permissions.AllowAny,),
 )
 
 urlpatterns = [
+    path('', RedirectView.as_view(url='/accounts/login/', permanent=False)),
     path('admin/', admin.site.urls),
-    
+
     # Conectamos las rutas para la app eva4
     path('api/', include('eva4.urls')),
-    
+
     # Ruta para obtener Token de autenticación
     path('api-auth/', include('rest_framework.urls')),
-    
+    path('accounts/logout/', custom_logout, name='logout'),
+    path('accounts/', include('rest_framework.urls')),
+
     # Rutas de Documentación Swagger
     path('docs/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),

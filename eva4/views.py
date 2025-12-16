@@ -3,6 +3,8 @@ from django_filters.rest_framework import DjangoFilterBackend
 from .models import Propietario, Agente, Propiedad, Visita
 from .serializer import PropietarioSerializer, AgenteSerializer, PropiedadSerializer, VisitaSerializer
 from rest_framework.permissions import IsAuthenticated
+from django.contrib.auth import logout
+from django.shortcuts import redirect
 
 class PropietarioViewSet(viewsets.ModelViewSet):
     queryset = Propietario.objects.all()
@@ -36,3 +38,7 @@ class VisitaViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['fecha_hora', 'estado']
+
+def custom_logout(request):
+    logout(request)
+    return redirect('/accounts/login/')

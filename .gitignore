@@ -11,3 +11,4 @@ drf/__pycache__/urls.cpython-313.pyc
 drf/__pycache__/settings.cpython-313.pyc
 drf/__pycache__/__init__.cpython-313.pyc
 db.sqlite3
+eva4/migrations/__pycache__/0001_initial.cpython-313.pyc

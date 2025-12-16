@@ -125,11 +125,15 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-#Configuracion de Restframework
+#Configuracion de login
+LOGIN_REDIRECT_URL ='/docs/'
+LOGOUT_REDIRECT_URL = '/accounts/login/'
 
+#Configuracion de Restframework
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES':[
         'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES':[
         'rest_framework.permissions.IsAuthenticated',
