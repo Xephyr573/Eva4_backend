@@ -39,7 +39,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # Conectamos las rutas para la app eva4
-    path('api/', include('eva4.urls')),
+    path('eva4/', include('eva4.urls')),
 
     # Ruta para obtener Token de autenticación
     path('api-auth/', include('rest_framework.urls')),
